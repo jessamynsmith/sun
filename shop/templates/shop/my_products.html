@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}
+	See Your Cushion Collection - Perfect Cushion Store
+{% endblock %}
+
+{% block content %}
+	<h1 style="margin-bottom: 30px">My Products</h1>
+	<div class="card">
+		<table class="table table-bordered table-striped">
+			<thead class="bg-success">
+				<tr>
+					<th>No.</th>
+					<th>Product Title</th>
+					<th>Price ($)</th>
+					<th>Status</th>
+				</tr>				
+			</thead>
+			<tbody>
+				{% for product in products %}
+					<tr>
+						<td>{{ forloop.counter }}</td>
+						<td><a href="{% url 'shop:Edit_Product' product.slug %}">{{ product.name }}</a></td>
+						<td>{{ product.price }}</td>
+						<td>{% if product.available %}Active {% else %} Disabled {% endif %}</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+{% endblock %}
